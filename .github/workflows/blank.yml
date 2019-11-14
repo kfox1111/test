@@ -32,8 +32,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
 #        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        upload_url: 'https://uploads.github.com/repos/kfox1111/test/releases/21459255/assets'
+        upload_url: 'https://uploads.github.com/repos/kfox1111/test/releases/21459255/assets{?name,label}'
         asset_path: ./hello.txt
-        asset_name: hello.txt
+        asset_name: hello2.txt
         asset_content_type: text/plain
         overwrite: true
