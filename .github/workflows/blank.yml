@@ -27,8 +27,9 @@ jobs:
 #      run: echo $UPLOAD_URL
     - name: Run a one-line script
       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         UPLOAD_URL: https://uploads.github.com/repos/kfox1111/test/releases/21459255/assets{?name,label}
-      run: curl -X delete $UPLOAD_URL/hello.txt
+      run: curl -H "Authorization: token $GITHUB_TOKEN" -X DELETE $UPLOAD_URL/hello.txt
     - name: Upload Asset
       id: upload-asset 
       uses: actions/upload-release-asset@v1.0.1
