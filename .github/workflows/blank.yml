@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run a one-line script
-      run: echo Hello, world4! > hello.txt
+      run: echo Hello, world5! > hello.txt
 #    - name: Create Release
 #      id: create_release
 #      uses: actions/create-release@v1
@@ -21,6 +21,11 @@ jobs:
 #        release_name: Release ${{ github.ref }}
 #        draft: false
 #        prerelease: false
+    - name: Run a one-line script
+      env:
+        ASSET_URL: 'https://api.github.com/repos/kfox1111/test/releases/21459255/assets'
+      run: |
+        curl -X DELETE -H "Authorization: token $GITHUB_TOKEN" $(curl "$ASSET_URL" | jq -r '.[] | select (.name == "hello.txt").url')
 #    - name: Run a one-line script
 #      env:
 #        UPLOAD_URL: ${{ steps.create_release.outputs.upload_url }}
@@ -34,6 +39,6 @@ jobs:
 #        upload_url: ${{ steps.create_release.outputs.upload_url }}
         upload_url: 'https://uploads.github.com/repos/kfox1111/test/releases/21459255/assets{?name,label}'
         asset_path: ./hello.txt
-        asset_name: hello2.txt
+        asset_name: hello.txt
         asset_content_type: text/plain
         overwrite: true
